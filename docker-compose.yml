@@ -1,0 +1,15 @@
+version: "3.4"
+services:
+  app:
+    volumes:
+      - ./app:/app
+    image: node
+    working_dir: /app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        yarn
+        yarn start
+    ports:
+     - "3000:3000"

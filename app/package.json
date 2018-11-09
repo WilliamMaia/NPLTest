@@ -1,0 +1,18 @@
+{
+  "scripts":{
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "natural": "^0.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "name": "NPLBot",
+  "version": "1.0.0",
+  "description": "npl test",
+  "main": "index.js",
+  "repository": "https://github.com/WilliamMaia/NPLTest",
+  "author": "William Maia",
+  "license": "MIT"
+}

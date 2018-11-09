@@ -1,0 +1,22 @@
+[
+  {
+    "question": "ver a posição de um carro pra mim",
+    "result": "ponto_de_referencia"
+  },
+  {
+    "question": "olha onde o carro esta",
+    "result": "ponto_de_referencia"
+  },
+  {
+    "question": "o veiculo ta perto do destino",
+    "result": "distancia_do_distancia"
+  },
+  {
+    "question": "ver qual a distancia do destino final do meu carro",
+    "result": "distancia_do_distancia"
+  },
+  {
+    "question": "quanto tempo o veiculo vai chegar no destino",
+    "result": "distancia_do_distancia"
+  }
+]
