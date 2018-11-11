@@ -3,7 +3,9 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "natural": "^0.6.2"
+    "natural": "^0.6.2",
+    "express": "^4.16.3",
+    "body-parser": "^1.18.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"

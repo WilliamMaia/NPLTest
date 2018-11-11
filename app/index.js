@@ -1,8 +1,7 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
-// const BrainJSClassifier = require('natural-brain');
-// const classifier = new BrainJSClassifier();
+
 var natural = require('natural');
 var classifier = new natural.BayesClassifier();
 
@@ -13,26 +12,25 @@ trainingsFiles.forEach((trainfile) => {
   trainings.forEach((train) => classifier.addDocument(train.question, train.result))
 })
 classifier.train();
+// console.log(classifier.getClassifications(urlParse.query.q));
+// res.end(JSON.stringify(classifier.classify(urlParse.query.q)));
 
-// console.log(classifier.classify('me diz onde ta o carro HAD1233')); // -> ponto de referencia
-// console.log(classifier.classify('quando o meu carro vai chegar no destino')); // -> destino
+const express = require('express')
+  , bodyParser = require('body-parser');
 
-const server = http.createServer((req, res) => {
-  let urlParse = url.parse(req.url,true);
-  if (urlParse.pathname == '/pergunta') {
-    // console.log(urlParse.query);
-    // console.log({natural: natural.PorterStemmerPt.stem(urlParse.query.q)});
-    if (urlParse.query.q) {
-      // console.log(classifier.getClassifications(urlParse.query.q));
-      res.end(JSON.stringify(classifier.classify(urlParse.query.q)));
-    } else {
-      res.end('pergunta');
-    }
-  } else {
-    res.end('...');
-  }
+var app = express();
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
+
+app.get("/question", function (request, response) {
+  response.send(JSON.stringify(classifier.classify(request.query.q)));
 });
-server.on('clientError', (err, socket) => {
-  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+
+app.post("/train", function (request, response) {
+  console.log('Incoming webhook: ' + JSON.stringify(request.body));
+  response.sendStatus(200);
 });
-server.listen(3000);
+
+var listener = app.listen(3000, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
