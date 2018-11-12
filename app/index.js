@@ -28,7 +28,7 @@ app.post("/train", function (request, response) {
 
   try{
     let date = new Date();
-    fs.writeFileSync('./train/'+('train_'+date.toLocaleTimeString().replaceAll(':', ''))+'.json', JSON.stringify(request.body.trainings));
+    fs.writeFileSync('./train/'+('train_'+date.toLocaleTimeString().replace(':', ''))+'.json', JSON.stringify(request.body.trainings));
   }catch (e){
     console.log("Cannot write file ", e);
   }
