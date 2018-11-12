@@ -1,6 +1,6 @@
 const fs = require('fs');
-const http = require('http');
-const url = require('url');
+const express = require('express')
+, bodyParser = require('body-parser');
 
 var natural = require('natural');
 var classifier = new natural.BayesClassifier();
@@ -15,8 +15,6 @@ classifier.train();
 // console.log(classifier.getClassifications(urlParse.query.q));
 // res.end(JSON.stringify(classifier.classify(urlParse.query.q)));
 
-const express = require('express')
-  , bodyParser = require('body-parser');
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
