@@ -1,4 +1,4 @@
 # NPLTest
 
-##how run the app
+## how run the app
 docker-compose up
