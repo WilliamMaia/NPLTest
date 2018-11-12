@@ -1,7 +1,9 @@
 [
   {
     "question": "ver a posição de um carro pra mim",
-    "result": "ponto_de_referencia"
+    "result": {
+      "type": "ponto_de_referencia"
+    }
   },
   {
     "question": "olha onde o carro esta",

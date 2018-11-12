@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NPL Train</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <form onsubmit="addTrain">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Question</label>
+            <input type="email" class="form-control" id="question"/>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">result</label>
+            <input type="email" class="form-control" id="result"/>
+          </div>
+          <button type="submit" class="btn btn-primary">add Train</button>
+        </form>
+      </div>
+      <div id="trainings" class="col-sm-6">
+
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-sm-4">
+        <form onsubmit="addTrain">
+          <button type="submit" class="btn btn-primary">Send data</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+      var trainings = [];
+      function onSubmit(event){
+        event.preventDefault();
+        axios.post('/train', {trainings: trainings})
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }
+      function addTrain(event){
+        event.preventDefault();
+        let question = document.getElementById('question').value;
+        let result = document.getElementById('result').value;
+        trainings.push({"question": question,"result": result});
+        updateTrainings()
+      }
+      function updateTrainings(){
+        document.getElementById('trainings').innerHTML = JSON.stringify(trainings);
+      }
+    </script>
+  </body>
+</html>
