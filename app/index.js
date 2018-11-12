@@ -25,6 +25,7 @@ app.get("/question", function (request, response) {
 
 app.post("/train", function (request, response) {
   // console.log('Incoming webhook: ' + JSON.stringify(request.body));
+  
   try{
     let date = new Date();
     fs.writeFileSync('./train/'+('train'+date.toLocaleTimeString().replaceAll(':', ''))+'.json', JSON.stringify(request.body.trainings));
