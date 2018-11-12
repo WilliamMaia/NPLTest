@@ -11,7 +11,8 @@
         <form onsubmit="addTrain">
           <div class="form-group">
             <label for="exampleInputEmail1">Question</label>
-            <input type="email" class="form-control" id="question"/>
+            <textarea type="email" class="form-control" id="question">
+            </textarea>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">result</label>
@@ -27,7 +28,7 @@
     <br/>
     <div class="row">
       <div class="col-sm-4">
-        <form onsubmit="addTrain">
+        <form onsubmit="onSubmit">
           <button type="submit" class="btn btn-primary">Send data</button>
         </form>
       </div>
@@ -36,6 +37,7 @@
     <script type="text/javascript">
       var trainings = [];
       function onSubmit(event){
+        console.log(event);
         event.preventDefault();
         axios.post('/train', {trainings: trainings})
         .then(function (response) {
