@@ -53,6 +53,43 @@
         </form>
       </div>
     </div>
+    <hr/>
+    <div class="row">
+      <div class="col-sm-4">
+        <form onsubmit="searchTrain(event)">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Question for search</label>
+            <textarea type="text" class="form-control" id="question_search"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">result</label>
+            <select id="result_search" class="" name="">
+              <option value="ponto_de_referencia">ponto_de_referencia</option>
+              <option value="distancia_origem">distancia_origem</option>
+              <option value="ultimo_contato">ultimo_contato</option>
+              <option value="ultima_ocorrencia">ultima_ocorrencia</option>
+              <option value="ocorrencias">ocorrencias</option>
+              <option value="solicitacao_contato_motorista">solicitacao_contato_motorista</option>
+              <option value="alteracao_sm">alteracao_sm</option>
+              <option value="movimentacao">movimentacao</option>
+              <option value="se ta bloqueado">se ta bloqueado</option>
+              <option value="desbloqueado">desbloqueado</option>
+              <option value="validade de checklist">validade de checklist</option>
+              <option value="status de checklist">status de checklist</option>
+              <option value="opcao1">opcao1</option>
+              <option value="opcao2">opcao2</option>
+              <option value="opcao3">opcao3</option>
+              <option value="opcao4">opcao4</option>
+              <option value="opcao5">opcao5</option>
+              <option value="opcao6">opcao6</option>
+              <option value="opcao7">opcao7</option>
+              <option value="opcao8">opcao8</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Search Train</button>
+        </form>
+      </div>
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
       var trainings = [];
@@ -78,6 +115,21 @@
         let result = selectResult.options[selectResult.selectedIndex].value;
         trainings.push({"question": question,"result": result});
         updateTrainings();
+        resetValues();
+      }
+      function searchTrain(event){
+        event.preventDefault();
+
+        let question = document.getElementById('question_search');
+        let selectResult = document.getElementById('result_search');
+
+        axios.get('/question?q='+question.value)
+        .then(function (response) {
+          selectResult.value = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
         resetValues();
       }
       function updateTrainings(){

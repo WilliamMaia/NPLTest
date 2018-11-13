@@ -9,7 +9,7 @@ var trainingsFiles = fs.readdirSync('./train');
 
 trainingsFiles.forEach((trainfile) => {
   let trainings = JSON.parse(fs.readFileSync('./train/'+trainfile, 'utf8'));
-  trainings.forEach((train) => classifier.addDocument(train.question, JSON.stringify(train.result)))
+  trainings.forEach((train) => classifier.addDocument(train.question, train.result))
 })
 classifier.train();
 // console.log(classifier.getClassifications(urlParse.query.q));
